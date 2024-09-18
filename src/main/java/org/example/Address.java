@@ -1,19 +1,28 @@
 package org.example;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.Locale;
 import java.util.Objects;
 
-public class Addres {
+public class Address {
     private String house;
+    private String room;
     private String street;
     private String city;
     private String state;
     private String zip;
 
-    public Addres() {
+    private int birthYear;
+    private int birthMonth;
+    private int birthDay;
+
+    public Address() {
     }
 
-    public Addres(String house, String street, String city, String state, String zip) {
+    public Address(String house, String room, String street, String city, String state, String zip) {
         this.house = house;
+        this.room = room;
         this.street = street;
         this.city = city;
         this.state = state;
@@ -26,6 +35,14 @@ public class Addres {
 
     public void setHouse(String house) {
         this.house = house;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
     }
 
     public String getStreet() {
@@ -64,13 +81,17 @@ public class Addres {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Addres addres = (Addres) o;
-        return Objects.equals(house, addres.house) && Objects.equals(street, addres.street) && Objects.equals(city, addres.city) && Objects.equals(state, addres.state) && Objects.equals(zip, addres.zip);
+        Address address = (Address) o;
+        return Objects.equals(house, address.house) && Objects.equals(room, address.room) && Objects.equals(street, address.street) && Objects.equals(city, address.city) && Objects.equals(state, address.state) && Objects.equals(zip, address.zip);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(house, street, city, state, zip);
+        return Objects.hash(house, room, street, city, state, zip);
+    }
+    public int getAge() {
+        LocalDate birthDate = LocalDate.of(birthYear, birthMonth, birthDay);
+        return Period.between(birthDate, LocalDate.now()).getYears();
     }
 
 }

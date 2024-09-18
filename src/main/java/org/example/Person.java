@@ -1,29 +1,24 @@
 package org.example;
 
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.Objects;
 
 public class Person {
+
     private String name;
     private String surname;
-    private int birthYear;
+    private int age;
     private int birthMonth;
     private int birthDay;
+    private Address address;
 
-    private Addres addres;
-
-    public Person() {
-
-    }
-
-    public Person(String name, String surname, int birthYear, int birthMonth, int birthDay, Addres addres) {
+    public Person(String name, String surname, Address address, int age, int birthMonth, int birthDay) {
         this.name = name;
         this.surname = surname;
-        this.birthYear = birthYear;
+        this.age = age;
         this.birthMonth = birthMonth;
         this.birthDay = birthDay;
-        this.addres = addres;
+        this.address = address;
+
     }
 
     public String getName() {
@@ -42,12 +37,12 @@ public class Person {
         this.surname = surname;
     }
 
-    public int getBirthYear() {
-        return birthYear;
+    public int getAge() {
+        return age;
     }
 
-    public void setBirthYear(int birthYear) {
-        this.birthYear = birthYear;
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public int getBirthMonth() {
@@ -58,14 +53,6 @@ public class Person {
         this.birthMonth = birthMonth;
     }
 
-    public Addres getAddres() {
-        return addres;
-    }
-
-    public void setAddres(Addres addres) {
-        this.addres = addres;
-    }
-
     public int getBirthDay() {
         return birthDay;
     }
@@ -74,21 +61,24 @@ public class Person {
         this.birthDay = birthDay;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return Objects.equals(surname, person.surname) && birthYear == person.birthYear && birthMonth == person.birthMonth && birthDay == person.birthDay && Objects.equals(name, person.name) && Objects.equals(addres, person.addres);
+        return age == person.age && birthMonth == person.birthMonth && birthDay == person.birthDay && Objects.equals(name, person.name) && Objects.equals(surname, person.surname) && Objects.equals(address, person.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, surname, birthYear, birthMonth, birthDay, addres);
-    }
-    public int getAge(){
-        LocalDate birthdate = LocalDate.of(birthYear, birthMonth, birthDay);
-        Period age = Period.between(birthdate, LocalDate.now());
-        return age.getYears();
+        return Objects.hash(name, surname, age, birthMonth, birthDay, address);
     }
 }
